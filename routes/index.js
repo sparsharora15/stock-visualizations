@@ -1,0 +1,11 @@
+const express = require('express')
+const { signup, login, getStocksDataBySymbol, calculateHighLowForStocks, getStockDataById, deleteUserStock } = require('../controllers')
+const { authUser } = require('../middleware/auth')
+const router = express.Router()
+router.post('/signup', signup)
+router.post('/login', login)
+router.post('/getStocksDataBySymbol', authUser,getStocksDataBySymbol)
+router.get('/getStocksData', authUser,calculateHighLowForStocks)
+router.post('/getStockDataById', authUser,getStockDataById)
+router.get('/deleteStock', authUser,deleteUserStock)
+module.exports = router
